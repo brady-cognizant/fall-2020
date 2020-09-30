@@ -1,0 +1,21 @@
+<aura:component implements="flexipage:availableForAllPageTypes"
+                controller="EmailTemplateLookupController"
+>
+	<!-- Link to static CSS resource once I make one -->
+    
+    <!-- Attributes here -->
+    <aura:attribute name="EmailTemplateId" type="String" />
+    
+    <!-- Markup starts here -->
+    <lightning:layout>
+    	<lightning:layoutItem padding="small">
+        	<div class="slds-form-element" onkeyup="{! c.handleLookupKey }">
+          		<lightning:input aura:id="lookup" 
+                                 name="lookup" 
+                                 label="Email Template Lookup" 
+                                 type="search"
+                />
+            </div>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

@@ -1,0 +1,15 @@
+<aura:component >
+    <aura:attribute name="class"
+                    type="String" 
+                    description="CSS classname for the element"
+    />
+    <aura:attribute name="xlink"
+                    type="String" 
+                    description="Link path to the SLDS icon"
+    />
+    <aura:attribute name="aria-hidden"
+                    type="Boolean"
+                    default="true"
+                    description="Whether to hide ARIA (controls accessibility)"
+    />
+</aura:component>

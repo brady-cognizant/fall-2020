@@ -1,0 +1,22 @@
+<apex:page standardController="Case">
+    <apex:form id="thisForm">
+    	<apex:inputField value="{! Case.Status }" id="test" onclick="logValue">
+            <apex:actionSupport event="onblur" rerender="complainant">
+            	<apex:param name="uid" value="hinga" />
+            </apex:actionSupport>
+        </apex:inputField>
+        <apex:outputPanel id="complainant">
+        	Your parameter is: {! $CurrentPage.parameters.uid }
+        </apex:outputPanel>
+    </apex:form>
+    
+    Hello, {! $Component.thisForm:test }
+    
+    <script>
+    	function logValue ()
+    	{	console.log("Hello");
+         	console.log("Hello, " + document.getElementById("{!$Component.thisForm:test}").value );
+         	return "Wow";
+        }
+    </script>
+</apex:page>

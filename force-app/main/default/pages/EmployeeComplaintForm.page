@@ -1,0 +1,62 @@
+<apex:page standardController="Case" extensions="EmployeeComplaintFormExtension">
+    <apex:form id="pageForm">
+        <apex:pageBlock title="Employee Complaint Form" id="compBlock">
+            	<apex:pageBlockSection id="compInputSection">
+               		<apex:actionFunction action="{!readDetail}" name="showDetail" reRender="udetail">
+                    	<apex:param name="uname" value="" assignTo="{!uName}" />
+                    </apex:actionFunction>
+                    <apex:inputField value="{! Case.Complainant__c }"
+                                     id="compName"
+                                     onblur="showDetail(this.value)"
+                    />
+            	</apex:pageBlockSection>
+          	<apex:outputPanel id="udetail">
+              	<apex:actionStatus startText="Requesting...">
+            		<apex:facet name="stop">
+                        <apex:pageBlockSection >
+                            <apex:outputField value="{! complainant.FirstName }" 
+                                              label="Complainant First Name"
+                                              rendered="{! complainant != null }" 
+                            />
+                			<apex:outputField value="{! complainant.LastName }" 
+                                              label="Complainant Last Name" 
+                                              rendered="{! complainant != null }"
+                            />
+                			<apex:outputField value="{! complainant.Designation__c }"
+                                              label="Complainant Designation" 
+                                              rendered="{! complainant != null }"
+                            /> 
+                			<apex:outputField value="{! complainant.Phone }" 
+                                              label="Complainant Phone" 
+                                              rendered="{! complainant != null }"
+                            />
+                			<apex:outputField value="{! complainant.Email }" 
+                                              label="Complainant Email" 
+                                              rendered="{! complainant != null }"
+                            /> 
+                			<apex:outputField value="{! complainant.Supervisor__c }" 
+                                              label="Complainant Supervisor" 
+                                              rendered="{! complainant != null }"
+                            />
+                			<apex:outputField value="{! complainant.FederationIdentifier }" 
+                                              label="Complainant SAML Federation ID" 
+                                              rendered="{! complainant != null }"
+                            />
+                        </apex:pageBlockSection>
+            		</apex:facet>
+        		</apex:actionStatus>
+            </apex:outputPanel>
+            <apex:pageBlockSection columns="1">
+                <apex:inputText value="{! Case.Subject }" />
+                <apex:inputTextarea value="{! Case.Description }" />
+                <apex:inputField value="{! Case.Status }" />
+                <apex:inputTextarea value="{! Case.L1_Comments__c }" />
+                <apex:inputTextarea value="{! Case.L2_Comments__c }" />
+                <apex:inputTextarea value="{! Case.L3_Comments__c }" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+            	<apex:commandButton action="{! save }" value="Submit" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
